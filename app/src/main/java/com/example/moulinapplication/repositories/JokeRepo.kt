@@ -1,8 +1,8 @@
 package com.example.moulinapplication.repositories
 
+import com.example.moulinapplication.model.Joke
 import com.example.moulinapplication.network.RetrofitBuilder
 import com.example.moulinapplication.network.services.JokeService
-import com.example.moulinapplication.model.Joke
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 

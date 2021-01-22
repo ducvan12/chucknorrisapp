@@ -1,11 +1,8 @@
 package com.example.moulinapplication.model
 
 data class Joke(
-    val categories: List<Any>,
-    val created_at: String,
-    val icon_url: String,
-    val id: String,
-    val updated_at: String,
-    val url: String,
-    val value: String
+    val id: Int,
+    val punchline: String,
+    val setup: String,
+    val type: String
 )

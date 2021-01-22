@@ -1,6 +1,9 @@
 <resources>
     <string name="app_name">MoulinApplication</string>
-    <string name="title_home">Home</string>
+    <string name="title_home">Jokes</string>
     <string name="title_dashboard">My Favourites</string>
     <string name="title_notifications">Notifications</string>
+    <string name="get_new_joke_text">Get New Joke</string>
+    <string name="Punch_it_text">Punch It!</string>
+    <string name="add_fav">ADD TO FAVOURITES</string>
 </resources>
