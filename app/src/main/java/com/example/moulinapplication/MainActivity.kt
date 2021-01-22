@@ -28,7 +28,7 @@ class MainActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree());
         Timber.i("timberinit")
 
-
+        Timber.i("bad changes")
 
 
 
