@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         Timber.plant(Timber.DebugTree());
         Timber.i("timberinit")
 
+        Timber.i("hello from github")
 
 
 
