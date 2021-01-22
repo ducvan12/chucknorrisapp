@@ -16,6 +16,7 @@ class JokeRepo (private val jokedao : JokeDao, private val jokeservice: JokeServ
     suspend fun fetchjoke() : Joke {
         withContext(Dispatchers.IO){
             Joke = jokeservice.getjoke();
+
         }
         return Joke
     }

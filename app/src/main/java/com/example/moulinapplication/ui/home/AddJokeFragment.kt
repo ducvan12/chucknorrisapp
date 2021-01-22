@@ -16,6 +16,7 @@ import com.example.moulinapplication.network.RetrofitBuilder
 import com.example.moulinapplication.repositories.JokeRepo
 import com.example.moulinapplication.roomdb.JokeDao
 import com.example.moulinapplication.roomdb.RoomDB
+import timber.log.Timber
 
 
 class AddJokeFragment : Fragment() {
@@ -38,6 +39,8 @@ class AddJokeFragment : Fragment() {
         val jokerepo = JokeRepo(dao,RetrofitBuilder.jokeservice)
         val factory = AddJokeFragmentViewModelFactory(jokerepo)
         val addJokeFragmentViewModel = ViewModelProvider(this,factory).get(AddJokeFragmentViewModel::class.java)
+
+
 
 
         return binding.root
