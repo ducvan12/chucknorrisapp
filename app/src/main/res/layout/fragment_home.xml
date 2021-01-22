@@ -17,6 +17,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -28,40 +29,64 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+
+        </ProgressBar>
+
         <TextView
             android:id="@+id/joketext"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="222"
+            android:text="@{joke.setup}"
+            android:textAlignment="center"
+            android:textSize="20sp">
+
+        </TextView>
+
+
+        <TextView
+            android:id="@+id/punchlinetext"
             android:layout_width="match_parent"
             android:layout_height="163dp"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_weight="8"
-            android:text="@{joke.setup}"
+            android:text="@{joke.punchline}"
             android:textAlignment="center"
-            android:textSize="20sp" />
+            android:textSize="20sp"
+            android:visibility="invisible" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/jokebutton"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_weight="0.5"
+            android:text="@string/get_new_joke_text" />
+
+        <Button
+            android:id="@+id/punchbutton"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="0.5"
             android:text="@string/Punch_it_text" />
 
         <Button
-            android:id="@+id/jokebutton"
-            android:layout_width="match_parent"
-            android:layout_weight="0.5"
-            android:layout_height="60dp"
-
-            android:text="@string/get_new_joke_text" />
-
-        <Button
-            android:id="@+id/button2"
+            android:id="@+id/addbutton"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:layout_weight="1"
             android:text="@string/add_fav"
             app:backgroundTint="#FFC107" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

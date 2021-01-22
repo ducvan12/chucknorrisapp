@@ -7,8 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import com.example.moulinapplication.MainActivity
+import com.example.moulinapplication.R
 import com.example.moulinapplication.databinding.FragmentHomeBinding
+import com.example.moulinapplication.network.RetrofitBuilder
+import com.example.moulinapplication.repositories.JokeRepo
+import com.example.moulinapplication.roomdb.JokeDao
+import com.example.moulinapplication.roomdb.RoomDB
 import kotlinx.coroutines.launch
 
 class HomeFragment : Fragment() {
@@ -22,18 +29,22 @@ class HomeFragment : Fragment() {
     ): View? {
 
         //viewmodel init
-        homeViewModel =
-                ViewModelProvider(this).get(HomeViewModel::class.java)
+        val dao : JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
+        val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
+        val factory = HomeViewModelFactory(jokerepo)
+        homeViewModel = ViewModelProvider(this,factory).get(HomeViewModel::class.java)
+
 
         //binding init
         val binding = FragmentHomeBinding.inflate(inflater,container,false)
 
 
-
-
-        //eerste vraag zetten
+        //joke observeren van viewmodel
         homeViewModel.joke.observe(viewLifecycleOwner, { it ->
+            binding.loading.visibility=View.INVISIBLE
             binding.joke = it
+            binding.punchlinetext.visibility=View.INVISIBLE  //hidden punchline
+            binding.punchlinetext.text=it.punchline
         })
 
 
@@ -41,17 +52,27 @@ class HomeFragment : Fragment() {
         binding.jokebutton.setOnClickListener {
             lifecycleScope.launch {
                 homeViewModel.getJoke()
-                homeViewModel.joke.observe(viewLifecycleOwner, { it ->
-                    binding.joke = it
-                })
+                binding.loading.visibility=View.VISIBLE //loading icon
+                }
             }
+
+
+        //punchline visible maken
+        binding.punchbutton.setOnClickListener {
+            binding.punchlinetext.visibility=View.VISIBLE
+        }
+
+
+        //button voor add to favourites
+        //todo naar add scherm navigeren
+        binding.addbutton.setOnClickListener {
+            val action = HomeFragmentDirections.actionNavigationHomeToAddJokeFragment()
+            val navigator = view?.findNavController()
+            navigator?.navigate(action)
         }
 
         return binding.root
     }
-
-
-
 
 
 }
