@@ -29,7 +29,7 @@ class MainActivity : AppCompatActivity() {
         Timber.i("timberinit")
 
 
-        Timber.i("hello from github BREOREORE")
+
 
 
 
