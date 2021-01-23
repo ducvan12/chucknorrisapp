@@ -9,7 +9,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitBuilder {
     companion object{
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://api.chucknorris.io/")
+            .baseUrl("https://official-joke-api.appspot.com")
             .addCallAdapterFactory(CoroutineCallAdapterFactory())
             .addConverterFactory(GsonConverterFactory.create())
             .build()

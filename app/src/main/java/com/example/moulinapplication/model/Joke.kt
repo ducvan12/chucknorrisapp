@@ -1,11 +1,26 @@
 package com.example.moulinapplication.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import java.io.Serializable
+
+@Entity(tableName = "joke_data_table")
 data class Joke(
-    val categories: List<Any>,
-    val created_at: String,
-    val icon_url: String,
-    val id: String,
-    val updated_at: String,
-    val url: String,
-    val value: String
-)
+
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "joke_id")
+    val id: Int,
+    @ColumnInfo(name = "joke_punchline")
+    val punchline: String,
+    @ColumnInfo(name = "joke_setup")
+    val setup: String,
+    @ColumnInfo(name = "joke_type")
+    val type: String,
+    @ColumnInfo(name="joke_number_Of_Stars")
+    var numberOfStars: Float
+
+) : Serializable
+
+
+
