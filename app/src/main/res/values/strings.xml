@@ -15,4 +15,5 @@
     <string name="joke">This is a joke.</string>
     <string name="punchline">This is a punchline</string>
     <string name="rating">4/5</string>
+    <string name="button">Button</string>
 </resources>

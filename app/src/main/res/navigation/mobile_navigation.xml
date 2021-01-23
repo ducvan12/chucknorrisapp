@@ -26,10 +26,14 @@
 
     <fragment
         android:id="@+id/addJokeFragment"
+        tools:layout="@layout/fragment_add_joke"
         android:name="com.example.moulinapplication.ui.home.AddJokeFragment"
         android:label="AddJokeFragment">
         <argument
             android:name="chosenJoke"
             app:argType="com.example.moulinapplication.model.Joke" />
+        <action
+            android:id="@+id/action_addJokeFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard" />
     </fragment>
 </navigation>
