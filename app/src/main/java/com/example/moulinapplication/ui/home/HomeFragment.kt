@@ -75,6 +75,8 @@ class HomeFragment : Fragment() {
             navigator?.navigate(action)
         }
 
+
+
         return binding.root
     }
 

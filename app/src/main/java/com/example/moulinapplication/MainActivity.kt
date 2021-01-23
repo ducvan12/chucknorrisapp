@@ -33,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         Timber.i("timberinit")
 
 
+        //hide actionbar
 
+
+        supportActionBar?.hide( )
 
 
 
