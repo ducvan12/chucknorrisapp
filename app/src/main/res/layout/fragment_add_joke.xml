@@ -22,6 +22,7 @@
             android:layout_height="wrap_content"
             android:textAlignment="center"
             android:padding="7dp"
+            android:textColor="@color/white"
             android:textSize="15dp"
             android:text="@string/Setup" />
 
@@ -29,6 +30,7 @@
             android:id="@+id/jokepunchline"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/white"
             android:padding="7dp"
             android:textSize="15dp"
             android:text="@string/Punchline"

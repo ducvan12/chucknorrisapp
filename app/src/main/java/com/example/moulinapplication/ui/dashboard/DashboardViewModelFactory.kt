@@ -9,7 +9,7 @@ import java.lang.IllegalArgumentException
 class DashboardViewModelFactory(private val jokerepo: JokeRepo) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(DashboardViewModel::class.java)){
-            return AddJokeFragmentViewModel(jokerepo) as T
+            return DashboardViewModel(jokerepo) as T
         }
         throw IllegalArgumentException("unknown viewmodelclass")
     }

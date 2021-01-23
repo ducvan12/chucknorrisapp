@@ -38,6 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="50"
+            app:cardCornerRadius="10dp"
+            app:rippleColor="@color/purple_500"
             android:backgroundTint="@color/material_on_primary_emphasis_medium"
             style="@style/CardView"
             android:textAlignment="center">
@@ -45,6 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:text="@{joke.setup}"
+                android:layout_gravity="center"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/black"

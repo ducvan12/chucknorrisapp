@@ -41,6 +41,7 @@ class HomeFragment : Fragment() {
 
         //binding init
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner=this
 
 
         //joke observeren van viewmodel
