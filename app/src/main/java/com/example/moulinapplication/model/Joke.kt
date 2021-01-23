@@ -16,7 +16,9 @@ data class Joke(
     @ColumnInfo(name = "joke_setup")
     val setup: String,
     @ColumnInfo(name = "joke_type")
-    val type: String
+    val type: String,
+    @ColumnInfo(name="joke_number_Of_Stars")
+    var numberOfStars: Float
 
 ) : Serializable
 

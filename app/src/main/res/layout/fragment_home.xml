@@ -38,14 +38,14 @@
             style="@style/CardView"
             android:textAlignment="center">
             <com.google.android.material.textview.MaterialTextView
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:text="@{joke.setup}"
                 android:textAlignment="center"
                 android:fontFamily="sans-serif-condensed-medium"
                 android:textColor="@color/black"
                 android:gravity="center"
-                android:textSize="20dp">
+                android:textSize="20sp">
             </com.google.android.material.textview.MaterialTextView>
         </com.google.android.material.card.MaterialCardView>
 

@@ -34,11 +34,14 @@ class AddJokeFragment : Fragment() {
         //binding init
         val binding = FragmentAddJokeBinding.inflate(inflater, container, false)
 
+
         //init repo and viewmodel
         val dao : JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
         val jokerepo = JokeRepo(dao,RetrofitBuilder.jokeservice)
         val factory = AddJokeFragmentViewModelFactory(jokerepo)
-        val addJokeFragmentViewModel = ViewModelProvider(this,factory).get(AddJokeFragmentViewModel::class.java)
+        addJokeFragmentViewModel = ViewModelProvider(this,factory).get(AddJokeFragmentViewModel::class.java)
+
+
 
         //set overview chosen joke
         binding.jokesetup.text=args.chosenJoke.setup
@@ -46,11 +49,15 @@ class AddJokeFragment : Fragment() {
 
 
 
-
+        //set actie wanneer add button is geklikt naar favorieten sturen
+        binding.addbutton.setOnClickListener {
+            val temp =  args.chosenJoke
+            temp.numberOfStars =binding.ratingbar.rating
+            addJokeToFavourite(temp)
+        }
 
         return binding.root
     }
-
 
 
     //add joke to favourites
