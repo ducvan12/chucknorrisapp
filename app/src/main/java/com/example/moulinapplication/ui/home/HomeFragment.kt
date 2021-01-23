@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -12,6 +14,7 @@ import androidx.navigation.findNavController
 import com.example.moulinapplication.MainActivity
 import com.example.moulinapplication.R
 import com.example.moulinapplication.databinding.FragmentHomeBinding
+import com.example.moulinapplication.model.Joke
 import com.example.moulinapplication.network.RetrofitBuilder
 import com.example.moulinapplication.repositories.JokeRepo
 import com.example.moulinapplication.roomdb.JokeDao
@@ -21,6 +24,7 @@ import kotlinx.coroutines.launch
 class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
+    private lateinit var currentJoke: Joke
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -29,22 +33,23 @@ class HomeFragment : Fragment() {
     ): View? {
 
         //viewmodel init
-        val dao : JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
+        val dao: JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
         val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
         val factory = HomeViewModelFactory(jokerepo)
-        homeViewModel = ViewModelProvider(this,factory).get(HomeViewModel::class.java)
+        homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
 
 
         //binding init
-        val binding = FragmentHomeBinding.inflate(inflater,container,false)
+        val binding = FragmentHomeBinding.inflate(inflater, container, false)
 
 
         //joke observeren van viewmodel
         homeViewModel.joke.observe(viewLifecycleOwner, { it ->
-            binding.loading.visibility=View.INVISIBLE
+            binding.loading.visibility = View.INVISIBLE
             binding.joke = it
-            binding.punchlinetext.visibility=View.INVISIBLE  //hidden punchline
-            binding.punchlinetext.text=it.punchline
+            currentJoke = it
+            binding.punchlinetext.visibility = View.INVISIBLE  //hidden punchline
+            binding.punchlinetext.text = it.punchline
         })
 
 
@@ -52,27 +57,25 @@ class HomeFragment : Fragment() {
         binding.jokebutton.setOnClickListener {
             lifecycleScope.launch {
                 homeViewModel.getJoke()
-                binding.loading.visibility=View.VISIBLE //loading icon
-                }
+                binding.loading.visibility = View.VISIBLE //loading icon
             }
+        }
 
 
         //punchline visible maken
         binding.punchbutton.setOnClickListener {
-            binding.punchlinetext.visibility=View.VISIBLE
+            binding.punchlinetext.visibility = View.VISIBLE
         }
 
 
         //button voor add to favourites
-        //todo naar add scherm navigeren
         binding.addbutton.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToAddJokeFragment()
+            val action = HomeFragmentDirections.actionNavigationHomeToAddJokeFragment(currentJoke)
             val navigator = view?.findNavController()
             navigator?.navigate(action)
         }
 
         return binding.root
     }
-
 
 }

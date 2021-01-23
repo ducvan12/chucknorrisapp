@@ -28,12 +28,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ProgressBar
-            android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="invisible">
-        </ProgressBar>
+
 
 
         <com.google.android.material.card.MaterialCardView
@@ -53,6 +48,13 @@
                 android:textSize="20dp">
             </com.google.android.material.textview.MaterialTextView>
         </com.google.android.material.card.MaterialCardView>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="invisible">
+        </ProgressBar>
 
 
         <TextView
