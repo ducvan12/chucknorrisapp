@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.core.view.isInvisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
@@ -20,12 +22,12 @@ class HomeFragment : Fragment() {
 
     private lateinit var homeViewModel: HomeViewModel
     private lateinit var currentJoke: Joke
-    private lateinit var binding : FragmentHomeBinding
+    private lateinit var binding: FragmentHomeBinding
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
         //viewmodel init
@@ -37,7 +39,7 @@ class HomeFragment : Fragment() {
 
         //binding init
         binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.lifecycleOwner=this
+        binding.lifecycleOwner = this
 
 
         //joke observeren van viewmodel
@@ -67,11 +69,19 @@ class HomeFragment : Fragment() {
 
         //button voor add to favourites
         binding.addbutton.setOnClickListener {
-            val action = HomeFragmentDirections.actionNavigationHomeToAddJokeFragment(currentJoke)
-            val navigator = view?.findNavController()
-            navigator?.navigate(action)
+            if (binding.punchlinetext.isInvisible) {
+                Toast.makeText(
+                    this.requireContext(),
+                    "You must punch it before you can add it.",
+                    Toast.LENGTH_SHORT
+                ).show()
+            } else {
+                val action =
+                    HomeFragmentDirections.actionNavigationHomeToAddJokeFragment(currentJoke)
+                val navigator = view?.findNavController()
+                navigator?.navigate(action)
+            }
         }
-
 
 
         return binding.root

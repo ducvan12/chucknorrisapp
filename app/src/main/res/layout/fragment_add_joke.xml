@@ -66,8 +66,17 @@
             android:layout_height="wrap_content"
             android:text="@string/add"
             android:layout_marginTop="30dp"
-
             app:backgroundTint="#FFC107" />
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_margin="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/happylady">
+        </com.airbnb.lottie.LottieAnimationView>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

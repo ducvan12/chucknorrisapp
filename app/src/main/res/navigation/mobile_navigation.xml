@@ -45,4 +45,9 @@
         android:name="com.example.moulinapplication.ui.popup.PopUpFragment"
         tools:layout="@layout/fragment_pop_up"
         android:label="PopUpFragment" />
+    <dialog
+        android:id="@+id/editFragment"
+        tools:layout="@layout/fragment_edit"
+        android:name="com.example.moulinapplication.ui.popup.EditFragment"
+        android:label="EditFragment" />
 </navigation>

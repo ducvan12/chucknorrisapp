@@ -34,13 +34,11 @@ class PopUpFragment(private val selectedJoke : Joke,val dashBoardViewmodel: Dash
         //init binding
         val binding = FragmentPopUpBinding.inflate(inflater,container,false)
 
-        //edit clicked
+        //update clicked
         binding.editjoke.setOnClickListener{
-            //TODO
-            Toast.makeText(this.requireContext(),"Joke updated", Toast.LENGTH_SHORT).show()
-            dashBoardViewmodel.editJoke(selectedJoke)
-            adapter.notifyDataSetChanged()
+            var dialog = EditFragment(selectedJoke,dashBoardViewmodel,adapter)
             this.dismiss()
+            getFragmentManager()?.let { it1 -> dialog.show(it1,"editFragment") }
         }
 
 
@@ -51,7 +49,6 @@ class PopUpFragment(private val selectedJoke : Joke,val dashBoardViewmodel: Dash
             dashBoardViewmodel.deleteJoke(selectedJoke)
             this.dismiss()
         }
-
 
 
         return binding.root
