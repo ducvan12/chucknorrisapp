@@ -36,4 +36,9 @@
             android:id="@+id/action_addJokeFragment_to_navigation_dashboard"
             app:destination="@id/navigation_dashboard" />
     </fragment>
+    <fragment
+        android:id="@+id/popUpFragment"
+        android:name="com.example.moulinapplication.ui.popup.PopUpFragment"
+        tools:layout="@layout/fragment_pop_up"
+        android:label="PopUpFragment" />
 </navigation>

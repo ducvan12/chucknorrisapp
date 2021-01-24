@@ -1,5 +1,6 @@
 package com.example.moulinapplication.ui.dashboard
 
+import android.app.Dialog
 import android.opengl.GLES30
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,11 +10,13 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moulinapplication.R
 import com.example.moulinapplication.databinding.FragmentDashboardBinding
+import com.example.moulinapplication.databinding.FragmentPopUpBinding
 import com.example.moulinapplication.model.Joke
 import com.example.moulinapplication.network.RetrofitBuilder
 import com.example.moulinapplication.repositories.JokeRepo
@@ -28,7 +31,8 @@ import timber.log.Timber
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
-    lateinit var binding : FragmentDashboardBinding
+    lateinit var binding: FragmentDashboardBinding
+    lateinit var adapter : JokeRecyclerViewAdapter
 
     override fun onCreateView(
             inflater: LayoutInflater,
@@ -38,34 +42,38 @@ class DashboardFragment : Fragment() {
 
 
         //init repo and viewmodel
-        val dao : JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
-        val jokerepo = JokeRepo(dao,RetrofitBuilder.jokeservice)
-        val factory =DashboardViewModelFactory(jokerepo)
-        dashboardViewModel = ViewModelProvider(this,factory).get(DashboardViewModel::class.java)
+        val dao: JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
+        val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
+        val factory = DashboardViewModelFactory(jokerepo)
+        dashboardViewModel = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
+
 
 
         //init binding
-        binding = FragmentDashboardBinding.inflate(inflater,container,false)
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
 
 
 
         //recycler view vullen met de favourite jokes
         dashboardViewModel.jokes.observe(viewLifecycleOwner, {
-            binding.recyclerview.layoutManager= LinearLayoutManager(this.requireContext())
-            binding.lifecycleOwner=this
-            binding.recyclerview.adapter=JokeRecyclerViewAdapter(it,{selected:Joke->jokeIsClicked(selected)})
-
+            binding.recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
+            binding.lifecycleOwner = this
+            adapter = JokeRecyclerViewAdapter(it, { selected: Joke -> jokeIsClicked(selected) })
+            adapter.notifyDataSetChanged()
+            binding.recyclerview.adapter = adapter
         })
+
 
         return binding.root
     }
 
 
-    fun jokeIsClicked(joke : Joke){
-        //TODO actual function POP UP
+    fun jokeIsClicked(joke: Joke) {
+        //show pop up dialog
+        val dialog = PopUpFragment(joke)
+        getFragmentManager()?.let { dialog.show(it, "popUpDialog") }
 
     }
-
 
 
 }
