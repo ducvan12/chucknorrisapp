@@ -37,14 +37,14 @@
         <com.google.android.material.card.MaterialCardView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="50"
+            android:layout_weight="15"
             app:cardCornerRadius="10dp"
             app:rippleColor="@color/purple_500"
             android:backgroundTint="@color/material_on_primary_emphasis_medium"
             style="@style/CardView"
             android:textAlignment="center">
             <com.google.android.material.textview.MaterialTextView
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_width="match_parent"
                 android:text="@{joke.setup}"
                 android:layout_gravity="center"
@@ -56,13 +56,21 @@
             </com.google.android.material.textview.MaterialTextView>
         </com.google.android.material.card.MaterialCardView>
 
-        <ProgressBar
+
+
+        <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/loading"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_margin="1dp"
+            android:layout_gravity="center"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/loadinganim2"
             android:visibility="invisible"
             >
-        </ProgressBar>
+
+        </com.airbnb.lottie.LottieAnimationView>
 
 
         <TextView

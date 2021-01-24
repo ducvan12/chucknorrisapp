@@ -36,7 +36,4 @@ class HomeViewModel(private val jokeRepo: JokeRepo): ViewModel() {
         }
     }
 
-
-
-
 }

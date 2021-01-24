@@ -9,7 +9,7 @@ import com.example.moulinapplication.databinding.JokeListItemBinding
 import com.example.moulinapplication.model.Joke
 import kotlin.math.round
 
-class JokeRecyclerViewAdapter(private  val jokes: List<Joke>, private val clickListener : (Joke)->Unit): RecyclerView.Adapter<MyViewHolder>() {
+class JokeRecyclerViewAdapter(var jokes: List<Joke>, val clickListener : (Joke)->Unit): RecyclerView.Adapter<MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val inflater = LayoutInflater.from(parent.context)
         val binding :JokeListItemBinding = DataBindingUtil.inflate(inflater, R.layout.joke_list_item,parent,false)
@@ -35,6 +35,7 @@ class MyViewHolder( val binding : JokeListItemBinding): RecyclerView.ViewHolder(
         binding.jokeCard.setOnClickListener{
             clickListener(joke)
         }
+
     }
 
 
