@@ -43,7 +43,6 @@ class DashboardFragment : Fragment() {
         //init recyclerview
         initrecyclerview()
 
-
         return binding.root
     }
 

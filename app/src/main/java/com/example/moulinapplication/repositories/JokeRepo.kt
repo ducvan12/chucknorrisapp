@@ -32,9 +32,7 @@ class JokeRepo (private val jokedao : JokeDao, private val jokeservice: JokeServ
     suspend fun deleteJoke(joke: Joke){
         jokedao.deleteJoke(joke)
     }
-    suspend fun deleteAllJokes(){
-        jokedao.deleteAllJokes()
-    }
+
 
 
 }

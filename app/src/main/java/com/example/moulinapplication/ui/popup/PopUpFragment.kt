@@ -36,15 +36,23 @@ class PopUpFragment(private val selectedJoke : Joke,val dashBoardViewmodel: Dash
 
         //edit clicked
         binding.editjoke.setOnClickListener{
+            //TODO
+            Toast.makeText(this.requireContext(),"Joke updated", Toast.LENGTH_SHORT).show()
+            dashBoardViewmodel.editJoke(selectedJoke)
+            adapter.notifyDataSetChanged()
+            this.dismiss()
         }
 
 
         //delete clicked
         binding.deletejoke.setOnClickListener {
+            Toast.makeText(this.requireContext(),"Joke deleted", Toast.LENGTH_SHORT).show()
+            adapter.notifyDataSetChanged()
             dashBoardViewmodel.deleteJoke(selectedJoke)
-            Toast.makeText(this.requireContext(),"Joke deleted successfully", Toast.LENGTH_LONG)
             this.dismiss()
         }
+
+
 
         return binding.root
     }

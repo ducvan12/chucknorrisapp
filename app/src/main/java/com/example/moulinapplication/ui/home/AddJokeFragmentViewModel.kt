@@ -17,19 +17,5 @@ class AddJokeFragmentViewModel(private val jokerepo: JokeRepo) : ViewModel() {
         }
     }
 
-    fun deleteJoke(joke : Joke){
-        viewModelScope.launch {
-            jokerepo.deleteJoke(joke)
-        }
-    }
-    fun updateJoke(joke : Joke){
-        viewModelScope.launch {
-            jokerepo.updateJoke(joke)
-        }
-    }
-    fun deleteAlljokes(){
-        viewModelScope.launch {
-            jokerepo.deleteAllJokes()
-        }
-    }
+
 }

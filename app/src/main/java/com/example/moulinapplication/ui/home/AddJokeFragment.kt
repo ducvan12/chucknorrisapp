@@ -60,7 +60,7 @@ class AddJokeFragment : Fragment() {
             val action = AddJokeFragmentDirections.actionAddJokeFragmentToNavigationDashboard()
             val navigator = view?.findNavController()
             navigator?.navigate(action)
-            Toast.makeText(this.context,"Joke is added successfully",Toast.LENGTH_LONG).show()
+            Toast.makeText(this.context,"Joke is added successfully",Toast.LENGTH_SHORT).show()
         }
 
         return binding.root
