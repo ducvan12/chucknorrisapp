@@ -87,8 +87,15 @@ dependencies {
     implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
 
 
+    // required if you want to use Mockito for unit tests
+    testImplementation 'org.mockito:mockito-core:2.7.22'
+    androidTestImplementation 'org.mockito:mockito-android:2.7.22'
+
     //lottie
     implementation 'com.airbnb.android:lottie:3.0.7'
+
+    //androidtest dependencies
+    androidTestImplementation "androidx.arch.core:core-testing:2.0.0"
 
 
 
