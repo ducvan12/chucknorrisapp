@@ -12,4 +12,8 @@
     <string name="Punchline">This is the Punchline</string>
     <string name="add">ADD</string>
     <string name="how_good">Rate the joke</string>
+    <string name="joke">This is a joke.</string>
+    <string name="punchline">This is a punchline</string>
+    <string name="rating">4/5</string>
+    <string name="button">Button</string>
 </resources>

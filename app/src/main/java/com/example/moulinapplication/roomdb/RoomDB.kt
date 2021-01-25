@@ -6,18 +6,22 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.moulinapplication.model.Joke
 
-@Database(entities = [Joke::class],version = 1)
+@Database(entities = [Joke::class], version = 1)
 abstract class RoomDB : RoomDatabase() {
 
-    abstract val JokeDAO : JokeDao
+    // jokedao instance
+    abstract val JokeDAO: JokeDao
 
-    companion object{
+    /**
+     * singleton object for room db
+     */
+    companion object {
         @Volatile
-        private var INSTANCE : RoomDB? = null
-        fun getInstance(context: Context):RoomDB{
-            synchronized(this){
+        private var INSTANCE: RoomDB? = null
+        fun getInstance(context: Context): RoomDB {
+            synchronized(this) {
                 var instance = INSTANCE
-                if(instance==null){
+                if (instance == null) {
                     instance = Room.databaseBuilder(
                         context.applicationContext,
                         RoomDB::class.java,
@@ -27,6 +31,5 @@ abstract class RoomDB : RoomDatabase() {
                 return instance
             }
         }
-
     }
 }

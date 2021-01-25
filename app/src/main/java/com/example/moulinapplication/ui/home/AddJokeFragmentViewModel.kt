@@ -8,28 +8,13 @@ import kotlinx.coroutines.launch
 
 class AddJokeFragmentViewModel(private val jokerepo: JokeRepo) : ViewModel() {
 
-
-    val jokes = jokerepo.jokes
-
-    fun insertJoke(joke : Joke){
+    /**
+     *  insert joke in jokerepo room db
+     * @param joke
+     */
+    fun insertJoke(joke: Joke) {
         viewModelScope.launch {
             jokerepo.insertJoke(joke)
-        }
-    }
-
-    fun deleteJoke(joke : Joke){
-        viewModelScope.launch {
-            jokerepo.deleteJoke(joke)
-        }
-    }
-    fun updateJoke(joke : Joke){
-        viewModelScope.launch {
-            jokerepo.updateJoke(joke)
-        }
-    }
-    fun deleteAlljokes(){
-        viewModelScope.launch {
-            jokerepo.deleteAllJokes()
         }
     }
 }

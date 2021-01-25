@@ -3,16 +3,13 @@ package com.example.moulinapplication.ui.dashboard
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.moulinapplication.repositories.JokeRepo
-import com.example.moulinapplication.ui.home.AddJokeFragmentViewModel
 import java.lang.IllegalArgumentException
 
 class DashboardViewModelFactory(private val jokerepo: JokeRepo) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if(modelClass.isAssignableFrom(DashboardViewModel::class.java)){
-            return AddJokeFragmentViewModel(jokerepo) as T
+        if (modelClass.isAssignableFrom(DashboardViewModel::class.java)) {
+            return DashboardViewModel(jokerepo) as T
         }
         throw IllegalArgumentException("unknown viewmodelclass")
     }
-
 }
-

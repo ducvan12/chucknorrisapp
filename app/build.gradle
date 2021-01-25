@@ -5,6 +5,7 @@ plugins {
 apply plugin: 'kotlin-kapt'
 apply plugin: "androidx.navigation.safeargs"
 
+
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.2"
@@ -78,6 +79,16 @@ dependencies {
     // Annotation processor
     def lifecycle_version = "2.2.0"
     kapt "androidx.lifecycle:lifecycle-compiler:$lifecycle_version"
+
+
+    //recyclerviews
+    implementation "androidx.recyclerview:recyclerview:1.1.0"
+    // For control over item selection of both touch and mouse driven selection
+    implementation "androidx.recyclerview:recyclerview-selection:1.1.0-rc03"
+
+
+    //lottie
+    implementation 'com.airbnb.android:lottie:3.0.7'
 
 
 

@@ -13,6 +13,8 @@
         <action
             android:id="@+id/action_navigation_home_to_addJokeFragment"
             app:destination="@id/addJokeFragment"
+            app:enterAnim="@anim/animations"
+            app:exitAnim="@anim/animations"
             app:popUpTo="@id/addJokeFragment"
             app:popUpToInclusive="true" />
     </fragment>
@@ -26,10 +28,26 @@
 
     <fragment
         android:id="@+id/addJokeFragment"
+        tools:layout="@layout/fragment_add_joke"
         android:name="com.example.moulinapplication.ui.home.AddJokeFragment"
         android:label="AddJokeFragment">
         <argument
             android:name="chosenJoke"
             app:argType="com.example.moulinapplication.model.Joke" />
+        <action
+            android:id="@+id/action_addJokeFragment_to_navigation_dashboard"
+            app:destination="@id/navigation_dashboard"
+            app:enterAnim="@anim/animations"
+            app:exitAnim="@anim/animations" />
     </fragment>
+    <fragment
+        android:id="@+id/popUpFragment"
+        android:name="com.example.moulinapplication.ui.popup.PopUpFragment"
+        tools:layout="@layout/fragment_pop_up"
+        android:label="PopUpFragment" />
+    <dialog
+        android:id="@+id/editFragment"
+        tools:layout="@layout/fragment_edit"
+        android:name="com.example.moulinapplication.ui.popup.EditFragment"
+        android:label="EditFragment" />
 </navigation>

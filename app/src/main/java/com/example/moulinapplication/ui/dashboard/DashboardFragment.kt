@@ -4,34 +4,68 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.moulinapplication.R
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.moulinapplication.databinding.FragmentDashboardBinding
+import com.example.moulinapplication.model.Joke
+import com.example.moulinapplication.network.RetrofitBuilder
+import com.example.moulinapplication.repositories.JokeRepo
+import com.example.moulinapplication.roomdb.JokeDao
+import com.example.moulinapplication.roomdb.RoomDB
+import com.example.moulinapplication.ui.popup.PopUpFragment
 
 class DashboardFragment : Fragment() {
 
     private lateinit var dashboardViewModel: DashboardViewModel
+    lateinit var binding: FragmentDashboardBinding
+    lateinit var adapter: JokeRecyclerViewAdapter
 
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
 
+        // init repo and viewmodel
+        val dao: JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
+        val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
+        val factory = DashboardViewModelFactory(jokerepo)
+        dashboardViewModel = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+        // init binding
+        binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
 
-        val binding = FragmentDashboardBinding.inflate(inflater,container,false)
+        // init recyclerview
+        initrecyclerview()
 
-        val textView: TextView = binding.textDashboard
-
-        dashboardViewModel.text.observe(viewLifecycleOwner, Observer {
-            textView.text = it
-        })
         return binding.root
+    }
+
+    /**
+     *creating the recycview
+     *with clicklistener
+     */
+    fun initrecyclerview() {
+        dashboardViewModel.jokes.observe(
+            viewLifecycleOwner,
+            {
+                adapter = JokeRecyclerViewAdapter(it, { selected: Joke -> jokeIsClicked(selected) })
+                binding.recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
+                binding.recyclerview.adapter = adapter
+            }
+        )
+    }
+
+    /**
+     * when the joke button is clicked
+     * a pop up fragment appears to edit or delete
+     * popupfragment params for accessing the viewmodel and recyclerview
+     * @param joke
+     */
+    fun jokeIsClicked(joke: Joke) {
+        val dialog = PopUpFragment(joke, dashboardViewModel, adapter)
+        getFragmentManager()?.let { dialog.show(it, "popUpDialog") }
     }
 }
