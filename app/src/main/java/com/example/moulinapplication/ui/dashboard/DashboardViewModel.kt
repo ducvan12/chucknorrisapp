@@ -1,7 +1,5 @@
 package com.example.moulinapplication.ui.dashboard
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.moulinapplication.model.Joke
@@ -12,16 +10,15 @@ class DashboardViewModel(private val repo: JokeRepo) : ViewModel() {
 
     val jokes = repo.jokes
 
-    fun editJoke(joke: Joke){
+    fun editJoke(joke: Joke) {
         viewModelScope.launch {
             repo.updateJoke(joke)
         }
     }
 
-    fun deleteJoke(joke: Joke){
+    fun deleteJoke(joke: Joke) {
         viewModelScope.launch {
             repo.deleteJoke(joke)
         }
     }
-
 }

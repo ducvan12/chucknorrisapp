@@ -30,44 +30,42 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        //viewmodel init
+        // viewmodel init
         val dao: JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
         val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
         val factory = HomeViewModelFactory(jokerepo)
         homeViewModel = ViewModelProvider(this, factory).get(HomeViewModel::class.java)
 
-
-        //binding init
+        // binding init
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
+        // joke observeren van viewmodel
+        homeViewModel.joke.observe(
+            viewLifecycleOwner,
+            { it ->
+                binding.loading.visibility = View.INVISIBLE
+                binding.joke = it
+                currentJoke = it
+                binding.punchlinetext.visibility = View.INVISIBLE // hidden punchline
+                binding.punchlinetext.text = it.punchline
+            }
+        )
 
-        //joke observeren van viewmodel
-        homeViewModel.joke.observe(viewLifecycleOwner, { it ->
-            binding.loading.visibility = View.INVISIBLE
-            binding.joke = it
-            currentJoke = it
-            binding.punchlinetext.visibility = View.INVISIBLE  //hidden punchline
-            binding.punchlinetext.text = it.punchline
-        })
-
-
-        //button voor nieuw vraag te zetten
+        // button voor nieuw vraag te zetten
         binding.jokebutton.setOnClickListener {
             lifecycleScope.launch {
                 homeViewModel.getJoke()
-                binding.loading.visibility = View.VISIBLE //loading icon
+                binding.loading.visibility = View.VISIBLE // loading icon
             }
         }
 
-
-        //punchline visible maken
+        // punchline visible maken
         binding.punchbutton.setOnClickListener {
             binding.punchlinetext.visibility = View.VISIBLE
         }
 
-
-        //button voor add to favourites
+        // button voor add to favourites
         binding.addbutton.setOnClickListener {
             if (binding.punchlinetext.isInvisible) {
                 Toast.makeText(
@@ -83,8 +81,6 @@ class HomeFragment : Fragment() {
             }
         }
 
-
         return binding.root
     }
-
 }

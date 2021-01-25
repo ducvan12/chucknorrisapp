@@ -27,39 +27,36 @@ class DashboardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-
-        //init repo and viewmodel
+        // init repo and viewmodel
         val dao: JokeDao = RoomDB.getInstance(requireContext()).JokeDAO
         val jokerepo = JokeRepo(dao, RetrofitBuilder.jokeservice)
         val factory = DashboardViewModelFactory(jokerepo)
         dashboardViewModel = ViewModelProvider(this, factory).get(DashboardViewModel::class.java)
 
-
-        //init binding
+        // init binding
         binding = FragmentDashboardBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = this
 
-
-        //init recyclerview
+        // init recyclerview
         initrecyclerview()
 
         return binding.root
     }
 
-
-    fun initrecyclerview(){
-        dashboardViewModel.jokes.observe(viewLifecycleOwner, {
-            adapter = JokeRecyclerViewAdapter(it,{ selected: Joke -> jokeIsClicked(selected) })
-            binding.recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
-            binding.recyclerview.adapter = adapter
-        })
+    fun initrecyclerview() {
+        dashboardViewModel.jokes.observe(
+            viewLifecycleOwner,
+            {
+                adapter = JokeRecyclerViewAdapter(it, { selected: Joke -> jokeIsClicked(selected) })
+                binding.recyclerview.layoutManager = LinearLayoutManager(this.requireContext())
+                binding.recyclerview.adapter = adapter
+            }
+        )
     }
 
-
     fun jokeIsClicked(joke: Joke) {
-        //show pop up dialog
-        val dialog = PopUpFragment(joke,dashboardViewModel,adapter)
+        // show pop up dialog
+        val dialog = PopUpFragment(joke, dashboardViewModel, adapter)
         getFragmentManager()?.let { dialog.show(it, "popUpDialog") }
-
     }
 }

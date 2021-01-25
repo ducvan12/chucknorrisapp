@@ -8,14 +8,11 @@ import kotlinx.coroutines.launch
 
 class AddJokeFragmentViewModel(private val jokerepo: JokeRepo) : ViewModel() {
 
-
     val jokes = jokerepo.jokes
 
-    fun insertJoke(joke : Joke){
+    fun insertJoke(joke: Joke) {
         viewModelScope.launch {
             jokerepo.insertJoke(joke)
         }
     }
-
-
 }
