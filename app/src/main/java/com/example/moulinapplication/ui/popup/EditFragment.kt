@@ -11,6 +11,12 @@ import com.example.moulinapplication.model.Joke
 import com.example.moulinapplication.ui.dashboard.DashboardViewModel
 import com.example.moulinapplication.ui.dashboard.JokeRecyclerViewAdapter
 
+/**
+ *pop up dialog fragment control for updating rating
+ * @property selectedJoke the selected joke
+ * @property dashBoardViewmodel update livedata
+ * @property adapter for notify adapter
+ */
 class EditFragment(val selectedJoke: Joke, val dashboardViewModel: DashboardViewModel, val adapter: JokeRecyclerViewAdapter) : DialogFragment() {
 
     override fun onCreateView(

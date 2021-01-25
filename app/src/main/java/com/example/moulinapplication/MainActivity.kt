@@ -9,6 +9,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import timber.log.Timber
 
+/**
+ *MAINACTIVITY
+ */
 class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -33,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         Timber.i("timberinit")
 
         // hide actionbar
-
         supportActionBar?.hide()
     }
 }

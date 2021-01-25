@@ -9,8 +9,12 @@ import com.example.moulinapplication.model.Joke
 @Database(entities = [Joke::class], version = 1)
 abstract class RoomDB : RoomDatabase() {
 
+    // jokedao instance
     abstract val JokeDAO: JokeDao
 
+    /**
+     * singleton object for room db
+     */
     companion object {
         @Volatile
         private var INSTANCE: RoomDB? = null

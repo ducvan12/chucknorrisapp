@@ -10,12 +10,20 @@ class DashboardViewModel(private val repo: JokeRepo) : ViewModel() {
 
     val jokes = repo.jokes
 
+    /**
+     * edit joke in roomdb
+     * @param joke
+     */
     fun editJoke(joke: Joke) {
         viewModelScope.launch {
             repo.updateJoke(joke)
         }
     }
 
+    /**
+     * delete joke in roomdb
+     * @param joke
+     */
     fun deleteJoke(joke: Joke) {
         viewModelScope.launch {
             repo.deleteJoke(joke)

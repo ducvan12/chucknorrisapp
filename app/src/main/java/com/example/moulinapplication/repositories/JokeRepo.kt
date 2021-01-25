@@ -6,16 +6,24 @@ import com.example.moulinapplication.roomdb.JokeDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
+/**
+ * Repository for jokes
+ * controls jokedao for room
+ * controls jokeservice for online api
+ * @property jokedao
+ * @property jokeservice
+ */
+
 class JokeRepo(private val jokedao: JokeDao, private val jokeservice: JokeService) {
 
-    lateinit var Joke: Joke
+    lateinit var joke: Joke
     val jokes = jokedao.getAllJokes()
 
     suspend fun fetchjoke(): Joke {
         withContext(Dispatchers.IO) {
-            Joke = jokeservice.getjoke()
+            joke = jokeservice.getjoke()
         }
-        return Joke
+        return joke
     }
 
     suspend fun insertJoke(joke: Joke) {

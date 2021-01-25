@@ -14,12 +14,18 @@ class HomeViewModel(private val jokeRepo: JokeRepo) : ViewModel() {
     val joke: LiveData<Joke>
         get() = _joke
 
+    /**
+     * when viewmodel init calls getjoke
+     */
     init {
         viewModelScope.launch {
             getJoke()
         }
     }
 
+    /**
+     * get joke from online api
+     */
     suspend fun getJoke() {
         viewModelScope.launch {
             _joke.value = jokeRepo.fetchjoke()

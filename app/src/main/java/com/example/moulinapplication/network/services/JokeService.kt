@@ -5,6 +5,11 @@ import retrofit2.http.GET
 
 interface JokeService {
 
+    /**
+     * makes call to rest api
+     *
+     * @return a joke object
+     */
     @GET("/random_joke")
     suspend fun getjoke(): Joke
 }

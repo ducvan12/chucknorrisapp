@@ -43,6 +43,10 @@ class DashboardFragment : Fragment() {
         return binding.root
     }
 
+    /**
+     *creating the recycview
+     *with clicklistener
+     */
     fun initrecyclerview() {
         dashboardViewModel.jokes.observe(
             viewLifecycleOwner,
@@ -54,8 +58,13 @@ class DashboardFragment : Fragment() {
         )
     }
 
+    /**
+     * when the joke button is clicked
+     * a pop up fragment appears to edit or delete
+     * popupfragment params for accessing the viewmodel and recyclerview
+     * @param joke
+     */
     fun jokeIsClicked(joke: Joke) {
-        // show pop up dialog
         val dialog = PopUpFragment(joke, dashboardViewModel, adapter)
         getFragmentManager()?.let { dialog.show(it, "popUpDialog") }
     }

@@ -8,6 +8,10 @@ import androidx.room.Query
 import androidx.room.Update
 import com.example.moulinapplication.model.Joke
 
+/**
+ * DAO for jokes in room db
+ *
+ */
 @Dao
 interface JokeDao {
 

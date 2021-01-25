@@ -55,7 +55,10 @@ class AddJokeFragment : Fragment() {
         return binding.root
     }
 
-    // add joke to favourites
+    /**
+     * passess joke to repo for insert in roomdb
+     * @param joke
+     */
     fun addJokeToFavourite(joke: Joke) {
         addJokeFragmentViewModel.insertJoke(joke)
     }
