@@ -55,6 +55,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
+            android:progressTint="@color/yellow"
+            android:progressBackgroundTint="@android:color/background_dark"
+            android:secondaryProgressTint="@android:color/background_dark"
             android:padding="2dp"
             android:layout_marginTop="2dp">
         </RatingBar>

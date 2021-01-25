@@ -28,6 +28,7 @@
                     android:id="@+id/joke_setup"
                     android:textSize="20sp"
                     android:padding="10dp"
+                    android:textColor="@color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/joke" />
@@ -35,6 +36,7 @@
                 <TextView
                     android:id="@+id/joke_punchlune"
                     android:textSize="18sp"
+                    android:textColor="@color/black"
                     android:layout_marginTop="1dp"
                     android:padding="10dp"
                     android:layout_width="wrap_content"
@@ -47,6 +49,13 @@
                     <RatingBar
                         android:id="@+id/joke_rating"
                         android:padding="2dp"
+                        android:isIndicator="true"
+                        android:progressTint="@color/yellow"
+                        android:progressBackgroundTint="@android:color/background_dark"
+                        android:secondaryProgressTint="@android:color/background_dark"
+                        android:clickable="false"
+                        android:focusableInTouchMode="false"
+                        android:focusable="false"
                         android:layout_gravity="start"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -56,6 +65,7 @@
                         android:gravity="center_horizontal"
                         android:textAlignment="center"
                         android:padding="15dp"
+                        android:textColor="@color/black"
                         android:layout_gravity="end"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"

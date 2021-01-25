@@ -25,6 +25,9 @@
                 android:id="@+id/ratingBar"
                 android:layout_gravity="center"
                 android:layout_margin="10dp"
+                android:progressTint="@color/yellow"
+                android:progressBackgroundTint="@android:color/background_dark"
+                android:secondaryProgressTint="@android:color/background_dark"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
