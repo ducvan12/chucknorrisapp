@@ -16,6 +16,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="35dp"
+    android:id="@+id/homefragment"
     android:background="@drawable/white_squares"
     tools:context=".ui.home.HomeFragment">
 
