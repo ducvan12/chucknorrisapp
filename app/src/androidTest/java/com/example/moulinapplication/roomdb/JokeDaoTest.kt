@@ -1,4 +1,4 @@
-package com.example.moulinapplication.dao
+package com.example.moulinapplication.roomdb
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.room.Room
 import androidx.test.core.app.ApplicationProvider
@@ -6,8 +6,6 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.filters.SmallTest
 import com.androiddevs.shoppinglisttestingyt.getOrAwaitValue
 import com.example.moulinapplication.model.Joke
-import com.example.moulinapplication.roomdb.JokeDao
-import com.example.moulinapplication.roomdb.RoomDB
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.runBlocking
 import org.junit.After
