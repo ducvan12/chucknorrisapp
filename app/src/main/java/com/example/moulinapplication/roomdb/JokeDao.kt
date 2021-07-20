@@ -29,4 +29,7 @@ interface JokeDao {
 
     @Query(value = "SELECT * FROM joke_data_table ORDER  BY joke_number_Of_Stars")
     fun getAllJokes(): LiveData<List<Joke>>
+
+    @Query("SELECT * FROM joke_data_table WHERE joke_id = :id")
+    fun getJokeByid(id: Int): LiveData<Joke>
 }
