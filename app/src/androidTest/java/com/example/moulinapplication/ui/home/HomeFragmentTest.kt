@@ -30,13 +30,11 @@ class HomeFragmentTest {
                 ViewMatchers.isDisplayed()
             )
         )
-
     }
 
     private fun whenPressPunchIsVisible() {
         Espresso.onView(ViewMatchers.withId(R.id.punchbutton)).perform(click())
-        Espresso.onView(ViewMatchers.withId(R.id.punchlinetext)).check((matches((isDisplayed()))));
-
+        Espresso.onView(ViewMatchers.withId(R.id.punchlinetext)).check((matches((isDisplayed()))))
     }
 
     private fun getNewJoke() {
@@ -75,8 +73,5 @@ class HomeFragmentTest {
         getNewJoke()
         addToFavouritesWithoutPunch_NotDisplay()
         addToFavouritesWithPunch_Display_navToAddJokeFragment()
-
     }
-
-
 }
