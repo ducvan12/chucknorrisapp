@@ -1,7 +1,9 @@
 package com.example.moulinapplication.ui.home
 
 import androidx.test.espresso.Espresso
+import androidx.test.espresso.Espresso.onIdle
 import androidx.test.espresso.Espresso.onView
+import androidx.test.espresso.ViewAssertion
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers
@@ -22,13 +24,13 @@ class HomeFragmentTest {
 
     @get:Rule
     var activityRule: ActivityScenarioRule<MainActivity> =
-        ActivityScenarioRule(MainActivity::class.java)
+            ActivityScenarioRule(MainActivity::class.java)
 
     private fun jokeIsVisible() {
         Espresso.onView(ViewMatchers.withId(R.id.joke_setup)).check(
-            matches(
-                ViewMatchers.isDisplayed()
-            )
+                matches(
+                        ViewMatchers.isDisplayed()
+                )
         )
     }
 
@@ -37,32 +39,22 @@ class HomeFragmentTest {
         Espresso.onView(ViewMatchers.withId(R.id.punchlinetext)).check((matches((isDisplayed()))))
     }
 
-    private fun getNewJoke() {
-        Espresso.onView(ViewMatchers.withId(R.id.jokebutton)).perform(click())
-        Espresso.onView(ViewMatchers.withId(R.id.joke_setup)).check(
-            matches(
-                ViewMatchers.isDisplayed()
-            )
-        )
-    }
 
-    private fun addToFavouritesWithoutPunch_NotDisplay() {
-        Espresso.onView(ViewMatchers.withId(R.id.addbutton)).perform(click())
-        Espresso.onView(ViewMatchers.withId(R.id.punchlinetext)).check(
-            matches(
-                not(ViewMatchers.isDisplayed())
-            )
-        )
-    }
-
-    private fun addToFavouritesWithPunch_Display_navToAddJokeFragment() {
-        Espresso.onView(ViewMatchers.withId(R.id.jokebutton)).perform(click())
+    private fun addToFavouritesWithPunch_DisplayRatingBar() {
         Espresso.onView(ViewMatchers.withId(R.id.addbutton)).perform(click())
 
-        Espresso.onView(ViewMatchers.withId(R.id.homefragment)).check(
-            matches(
-                ViewMatchers.isDisplayed()
-            )
+        Espresso.onView(ViewMatchers.withId(R.id.ratingbar)).check(
+                matches(
+                        ViewMatchers.isDisplayed()
+                )
+        )
+    }
+    private fun add_Displaylist() {
+        Espresso.onView(ViewMatchers.withId(R.id.addbutton)).perform(click())
+        Espresso.onView(ViewMatchers.withId(R.id.recyclerview)).check(
+                matches(
+                        ViewMatchers.isDisplayed()
+                )
         )
     }
 
@@ -70,8 +62,7 @@ class HomeFragmentTest {
     fun fullFragmentTest() {
         jokeIsVisible()
         whenPressPunchIsVisible()
-        getNewJoke()
-        addToFavouritesWithoutPunch_NotDisplay()
-        addToFavouritesWithPunch_Display_navToAddJokeFragment()
+        addToFavouritesWithPunch_DisplayRatingBar()
+        add_Displaylist()
     }
 }
