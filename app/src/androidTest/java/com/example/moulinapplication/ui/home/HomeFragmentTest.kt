@@ -42,7 +42,7 @@ class HomeFragmentTest {
 
     private fun addToFavouritesWithPunch_DisplayRatingBar() {
         Espresso.onView(ViewMatchers.withId(R.id.addbutton)).perform(click())
-
+        Espresso.onView(ViewMatchers.withId(R.id.ratingbar)).perform(click())
         Espresso.onView(ViewMatchers.withId(R.id.ratingbar)).check(
                 matches(
                         ViewMatchers.isDisplayed()
